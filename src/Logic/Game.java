@@ -31,7 +31,6 @@ public class Game implements Updatable, Drawable{
         mPlayer.update();
         mGhostManager.setTargetLocation(mPlayer.getCurrX(), mPlayer.getCurrY());
         mGhostManager.update();
-
     }
 
     @Override
@@ -39,7 +38,6 @@ public class Game implements Updatable, Drawable{
         mMaze.draw(gc, fieldHeight, fieldWidth);
         mPlayer.draw(gc, fieldHeight, fieldWidth);
         mGhostManager.draw(gc, fieldHeight, fieldWidth);
-
     }
 
     public void restartGame() {

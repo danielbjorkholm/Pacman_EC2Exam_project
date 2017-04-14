@@ -22,23 +22,25 @@ public class Maze implements Drawable {
         mFields = MazeDataManager.getInstance().loadStandardMaze();
 
         //Set edges på hver field.
-        List<Field> connectedFields = new ArrayList<>();
+        List<Field> connectedFields = new ArrayList<>(4);
         //For hvert felt...
-        for (Field f: mFields) {
+        for (Field f : mFields) {
             connectedFields.clear();
             //...og hvert other felt...
-            for (Field other: mFields) {
-                //...hvis forskellen i felternes positioner ikke er mere end 1 i både x og y...
-                if (!(Math.abs(f.getPosX() - other.getPosX()) > 1 && Math.abs(f.getPosY() - other.getPosY()) > 1)){
-                    //...og det ikke er det samme felt eller en Wall...
-                    if(!f.equals(other) && other.getFieldProperty() == FieldProperty.PATH ){
-                        //Add other feltet som en edge til feltet f.
-                        f.addConnectedField(other);
-                    }
-                }
+            for (Field other : mFields) {
+                if (other.getPosX() == (f.getPosX() - 1) && other.getPosY() == f.getPosY())
+                    connectedFields.add(other);
+                if (other.getPosX() == (f.getPosX() + 1) && other.getPosY() == f.getPosY())
+                    connectedFields.add(other);
+                if (other.getPosX() == f.getPosX() && other.getPosY() == (f.getPosY() - 1))
+                    connectedFields.add(other);
+                if (other.getPosX() == f.getPosX() && other.getPosY() == (f.getPosY() + 1))
+                    connectedFields.add(other);
+            }
+            for (Field c: connectedFields) {
+                if(c. getFieldProperty() == FieldProperty.PATH) f.addConnectedField(c);
             }
         }
-
 
 
         System.out.println("Size: " + mFields.size());
@@ -53,7 +55,7 @@ public class Maze implements Drawable {
     public void draw(GraphicsContext gc, double fieldHeight, double fieldWidth) {
         gc.setFill(Color.GRAY);
         gc.fillRect(0, 0, fieldWidth, fieldHeight);
-        for (Field f: mFields) {
+        for (Field f : mFields) {
             f.draw(gc, fieldHeight, fieldWidth);
         }
     }
@@ -69,8 +71,8 @@ public class Maze implements Drawable {
 
 
     public FieldProperty getFieldProperty(int X, int Y) {
-        for (Field f: mFields) {
-            if (f.getPosX() == X && f.getPosY() == Y){
+        for (Field f : mFields) {
+            if (f.getPosX() == X && f.getPosY() == Y) {
                 return f.getFieldProperty();
             }
         }

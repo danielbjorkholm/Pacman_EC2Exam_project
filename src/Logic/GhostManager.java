@@ -27,7 +27,9 @@ public class GhostManager implements Updatable, Drawable {
 
     @Override
     public void update() {
-
+        for (Ghost gh: mGhosts) {
+            gh.update();
+        }
     }
 
     @Override

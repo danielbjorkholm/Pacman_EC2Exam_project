@@ -67,4 +67,23 @@ public class Field implements Drawable{
         return true;
     }
 
+    @Override
+    public String toString() {
+
+        String result = "";
+
+        result += "Field{" +
+                "posX=" + posX +
+                ", posY=" + posY +
+                ", mFieldProperty=" + mFieldProperty +
+        ", connected: ";
+        for (Field f: mConnectedFields) {
+            result += "-x:" + f.getPosX() + "y:" + f.getPosY() + "-";
+        }
+
+
+                //", mConnectedFields=" + mConnectedFields +
+                result += '}';
+        return result;
+    }
 }
