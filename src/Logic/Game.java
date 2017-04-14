@@ -29,6 +29,7 @@ public class Game implements Updatable, Drawable{
     public void update() {
 
         mPlayer.update();
+        mGhostManager.setTargetLocation(mPlayer.getCurrX(), mPlayer.getCurrY());
         mGhostManager.update();
 
     }
@@ -43,7 +44,7 @@ public class Game implements Updatable, Drawable{
 
     public void restartGame() {
         mMaze = new Maze(mHeight, mWidth);
-        mGhostManager = new GhostManager();
+        mGhostManager = new GhostManager(mMaze);
         mPlayer = new Player(0,0, mMaze);
     }
 

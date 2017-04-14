@@ -5,6 +5,8 @@ import Model.FieldProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MazeDataManager {
     private static MazeDataManager ourInstance = new MazeDataManager();
@@ -16,8 +18,8 @@ public class MazeDataManager {
     private MazeDataManager() {
     }
 
-    public List<Field> loadStandardMaze(){
-        List<Field> loadedMaze = new ArrayList<>(600);
+    public Set<Field> loadStandardMaze(){
+        Set<Field> loadedMaze = new TreeSet<Field>();
 
         //Intellij er lidt buggy i måden den builder projekter, når man gerne vil finde txt filer.
         //Derfor er Maze'en hardcoded i en string her.Så jeg kan bruge tiden på nogle seje algoritmer istedet.

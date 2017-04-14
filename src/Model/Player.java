@@ -23,6 +23,14 @@ public class Player implements Updatable, Drawable {
         mAlive = true;
     }
 
+    public int getCurrX() {
+        return currX;
+    }
+
+    public int getCurrY() {
+        return currY;
+    }
+
     @Override
     public void update() {
         int prevX = currX;
