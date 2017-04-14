@@ -6,11 +6,12 @@ import Model.Ghost;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GhostManager implements Updatable, Drawable {
 
-    List<Ghost> mGhosts;
+    private List<Ghost> mGhosts = new ArrayList<>();
 
     public GhostManager() {
         mGhosts.add(new Ghost(14, 9, Color.PINK));

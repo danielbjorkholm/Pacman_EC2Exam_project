@@ -14,7 +14,7 @@ public class Controller implements Initializable{
 
     public Canvas mCanvas;
     private Game mGame = Game.getInstance();
-    private float mRefreshRate = 0.5f; //in seconds
+    private float mRefreshRate = 0.25f; //in seconds
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +40,7 @@ public class Controller implements Initializable{
                 keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.RIGHT) {
             System.out.println("Keypressed -> KeyCode: " + keyEvent.getCode());
             mGame.updatePlayerDirection(keyEvent.getCode());
+            mGame.draw(mCanvas.getGraphicsContext2D(), mCanvas.getHeight() / mGame.getHeight(), mCanvas.getWidth() / mGame.getWidth());
         }
     }
 }

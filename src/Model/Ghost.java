@@ -11,12 +11,14 @@ public class Ghost implements Updatable, Drawable{
 
     private int currX;
     private int currY;
+    private boolean mAlive;
     private Color mColor;
 
     public Ghost(int X, int Y, Color color) {
         currX = X;
         currY = Y;
         mColor = color;
+        mAlive = true;
     }
 
     @Override
