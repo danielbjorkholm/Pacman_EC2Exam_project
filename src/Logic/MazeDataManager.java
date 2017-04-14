@@ -3,10 +3,10 @@ package Logic;
 import Model.Field;
 import Model.FieldProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
+
 
 public class MazeDataManager {
     private static MazeDataManager ourInstance = new MazeDataManager();
@@ -19,7 +19,7 @@ public class MazeDataManager {
     }
 
     public Set<Field> loadStandardMaze(){
-        Set<Field> loadedMaze = new TreeSet<Field>();
+        Set<Field> loadedMaze = new HashSet<Field>();
 
         //Intellij er lidt buggy i måden den builder projekter, når man gerne vil finde txt filer.
         //Derfor er Maze'en hardcoded i en string her.Så jeg kan bruge tiden på nogle seje algoritmer istedet.
