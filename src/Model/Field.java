@@ -45,6 +45,7 @@ public class Field implements Drawable{
         return true;
     }
 
+
     @Override
     public void draw(GraphicsContext gc, double fieldHeight, double fieldWidth) {
         if (mFieldProperty == FieldProperty.WALL) {

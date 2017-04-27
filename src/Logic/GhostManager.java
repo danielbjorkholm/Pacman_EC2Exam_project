@@ -4,6 +4,7 @@ import Interfaces.Drawable;
 import Interfaces.Updatable;
 import Model.Ghost;
 import Model.Maze;
+import Strategies.BreadthChase;
 import Strategies.RandomWalk;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -18,7 +19,7 @@ public class GhostManager implements Updatable, Drawable {
     private int mPlayerPosY;
 
     public GhostManager(Maze maze) {
-        mGhosts.add(new Ghost(14, 9, Color.PINK, maze, new RandomWalk()));
+        mGhosts.add(new Ghost(14, 9, Color.PINK, maze, new BreadthChase(maze)));
         mGhosts.add(new Ghost(14, 10, Color.BLUE, maze, new RandomWalk()));
         mGhosts.add(new Ghost(15, 9, Color.ORANGE,maze, new RandomWalk()));
         mGhosts.add(new Ghost(15, 10, Color.RED, maze, new RandomWalk()));

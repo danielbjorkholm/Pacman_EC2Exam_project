@@ -3,6 +3,7 @@ package Strategies;
 
 import Interfaces.PathfindingStrategy;
 import Model.Field;
+import Model.Maze;
 
 import java.util.Random;
 import java.util.Set;
