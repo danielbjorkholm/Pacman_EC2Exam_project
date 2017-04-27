@@ -29,7 +29,7 @@ public class Game implements Updatable, Drawable{
     public void update() {
 
         mPlayer.update();
-        mGhostManager.setTargetLocation(mPlayer.getCurrX(), mPlayer.getCurrY());
+        mGhostManager.setTargetLocation(mMaze.getFieldAt(mPlayer.getCurrX(), mPlayer.getCurrY()));
         mGhostManager.update();
     }
 

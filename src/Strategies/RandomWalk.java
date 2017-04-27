@@ -14,11 +14,11 @@ public class RandomWalk implements PathfindingStrategy{
     private Field prevField = null;
 
     @Override
-    public Field findNextMove(int currX, int currY, int destinationX, int destinationY, Set<Field> graph) {
+    public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
         //For hvert felt i graph'en.
-        for (Field f: graph) {
+        for (Field f: maze.getFields()) {
             //Hvis mover er på dette felt...
-            if(f.isAt(currX, currY)){
+            if(f.isAt(currentPosition.getPosX(), currentPosition.getPosY())){
                 //Er det første kald, sæt prevField til nuværende placering.
                 if(prevField == null){
                     prevField = f;
@@ -30,7 +30,7 @@ public class RandomWalk implements PathfindingStrategy{
                     result = (Field) f.getConnectives().toArray()[rand.nextInt(f.getConnectives().size())];
                 }
                 prevField = f;
-               return result;
+                return result;
             }
         }
         return null;

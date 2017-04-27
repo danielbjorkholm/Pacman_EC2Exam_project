@@ -2,6 +2,7 @@ package Logic;
 
 import Interfaces.Drawable;
 import Interfaces.Updatable;
+import Model.Field;
 import Model.Ghost;
 import Model.Maze;
 import Strategies.BreadthChase;
@@ -15,14 +16,13 @@ import java.util.List;
 public class GhostManager implements Updatable, Drawable {
 
     private List<Ghost> mGhosts = new ArrayList<>();
-    private int mPlayerPosX;
-    private int mPlayerPosY;
+    private Field mPlayerPos;
 
     public GhostManager(Maze maze) {
-        mGhosts.add(new Ghost(14, 9, Color.PINK, maze, new BreadthChase(maze)));
-        mGhosts.add(new Ghost(14, 10, Color.BLUE, maze, new RandomWalk()));
-        mGhosts.add(new Ghost(15, 9, Color.ORANGE,maze, new RandomWalk()));
-        mGhosts.add(new Ghost(15, 10, Color.RED, maze, new RandomWalk()));
+        mGhosts.add(new Ghost(maze.getFieldAt(14,9), Color.PINK, maze, new BreadthChase()));
+        //mGhosts.add(new Ghost(maze.getFieldAt(14,10), Color.BLUE, maze, new RandomWalk()));
+        //mGhosts.add(new Ghost(maze.getFieldAt(15,9), Color.ORANGE,maze, new RandomWalk()));
+        //mGhosts.add(new Ghost(maze.getFieldAt(15,10), Color.RED, maze, new RandomWalk()));
 
     }
 
@@ -41,11 +41,10 @@ public class GhostManager implements Updatable, Drawable {
         }
     }
 
-    public void setTargetLocation(int currX, int currY) {
-        mPlayerPosX = currX;
-        mPlayerPosY = currY;
+    public void setTargetLocation(Field targetLocation) {
+        mPlayerPos = targetLocation;
         for (Ghost gh: mGhosts) {
-            gh.setTarget(currX, currY);
+            gh.setTarget(targetLocation);
         }
 
     }

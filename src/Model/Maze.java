@@ -69,6 +69,16 @@ public class Maze implements Drawable {
         return mWidth;
     }
 
+    public Field getFieldAt(int x, int y){
+
+        for (Field f: mFields) {
+            if(f.isAt(x, y)) {
+               return f;
+            }
+        }
+        return null;
+    }
+
 
     public FieldProperty getFieldProperty(int X, int Y) {
         for (Field f : mFields) {
@@ -77,5 +87,11 @@ public class Maze implements Drawable {
             }
         }
         return null;
+    }
+
+    public void clearParents(){
+        for (Field f: mFields) {
+            f.setParent(null);
+        }
     }
 }

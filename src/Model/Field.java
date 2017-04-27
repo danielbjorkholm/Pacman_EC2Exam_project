@@ -13,6 +13,7 @@ public class Field implements Drawable{
     private int posY;
     private FieldProperty mFieldProperty;
 
+    private Field mParent = null;
     private Set<Field> mConnectedFields = new HashSet<>();
 
     public Field(int posX, int posY, FieldProperty property) {
@@ -37,6 +38,14 @@ public class Field implements Drawable{
 
     public Set<Field> getConnectives(){
         return mConnectedFields;
+    }
+
+    public Field getParent() {
+        return mParent;
+    }
+
+    public void setParent(Field parent) {
+        mParent = parent;
     }
 
     public boolean isAt(int x, int y){
