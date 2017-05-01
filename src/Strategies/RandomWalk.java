@@ -7,6 +7,7 @@ import Model.Maze;
 
 import java.util.Random;
 import java.util.Set;
+import java.util.Stack;
 
 public class RandomWalk implements PathfindingStrategy{
 
@@ -34,5 +35,13 @@ public class RandomWalk implements PathfindingStrategy{
             }
         }
         return null;
+    }
+
+    @Override
+    public Stack<Field> getPath() {
+
+        Stack<Field> result = new Stack<Field>();
+        result.add(prevField);
+        return result;
     }
 }

@@ -17,10 +17,14 @@ public class BreadthChase implements PathfindingStrategy{
     private List<Field> fieldsToBeRemoved = new ArrayList<>();
     private List<Field> fieldsToBoAdded = new ArrayList<>();
 
+    private int numberOfSearches = 0;
+
     // bliver kaldt af spøgelset
     @Override
     public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
 
+        //Oprydning 1.0
+        numberOfSearches = 0;
         path.clear();
         visitedNodes.clear();
         recentlyAdded.clear();
@@ -41,11 +45,12 @@ public class BreadthChase implements PathfindingStrategy{
             for (Field f: recentlyAdded) {
                 //Tag dennes børn...
                 for (Field child: f.getConnectives()) {
+                    numberOfSearches++;
                     //...Hvis Barnet ikke allerede har været undersøgt..
                     if (child.getParent() == null) {
                         //...set barnets parent...
                         child.setParent(f);
-                        //...og smid dem i visited og recentlyadded
+                        //...og smid dem i visited og recentlyAdded
                         visitedNodes.add(child);
                         fieldsToBoAdded.add(child);
                     }
@@ -53,6 +58,7 @@ public class BreadthChase implements PathfindingStrategy{
                 //Fjern parenten fra recently added.
                 fieldsToBeRemoved.add(f);
             }
+            //Oprydning 2.0
             recentlyAdded.removeAll(fieldsToBeRemoved);
             fieldsToBeRemoved.clear();
             recentlyAdded.addAll(fieldsToBoAdded);
@@ -61,7 +67,7 @@ public class BreadthChase implements PathfindingStrategy{
 
         Field nextField = calculatePath(targetPosition);
 
-
+        System.out.println("Breadth First - Number of Searches: " + numberOfSearches);
         return nextField;
     }
 
@@ -77,5 +83,11 @@ public class BreadthChase implements PathfindingStrategy{
 
         path.pop();
         return path.pop();
+    }
+
+    @Override
+    public Stack<Field> getPath() {
+
+        return path;
     }
 }

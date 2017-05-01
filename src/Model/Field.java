@@ -77,6 +77,8 @@ public class Field implements Drawable{
         return true;
     }
 
+
+
     @Override
     public String toString() {
 
@@ -95,5 +97,9 @@ public class Field implements Drawable{
                 //", mConnectedFields=" + mConnectedFields +
                 result += '}';
         return result;
+    }
+
+    public double getHeuristicCost(Field targetPosition) {
+        return (Math.abs(posX - targetPosition.getPosX()) + Math.abs(posY - targetPosition.getPosY()));
     }
 }

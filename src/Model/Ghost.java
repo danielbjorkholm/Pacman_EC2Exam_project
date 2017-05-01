@@ -6,6 +6,7 @@ import Interfaces.PathfindingStrategy;
 import Interfaces.Updatable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.StrokeLineCap;
 
 public class Ghost implements Updatable, Drawable{
@@ -34,6 +35,7 @@ public class Ghost implements Updatable, Drawable{
     public void update() {
         mPosition = mStrategy.findNextMove(mPosition, mTargetPos, mMaze);
 
+
     }
 
     @Override
@@ -53,5 +55,12 @@ public class Ghost implements Updatable, Drawable{
                       (mPosition.getPosX()*fieldWidth)+((fieldWidth/2)-(fieldWidth*0.125f)),(mPosition.getPosY()*fieldHeight)+(fieldHeight*0.430f));
         gc.strokeLine((mPosition.getPosX()*fieldWidth)+((fieldWidth/2)+(fieldWidth*0.125f)),(mPosition.getPosY()*fieldHeight)+(fieldHeight*0.420f),
                       (mPosition.getPosX()*fieldWidth)+((fieldWidth/2)+(fieldWidth*0.125f)),(mPosition.getPosY()*fieldHeight)+(fieldHeight*0.430f));
+
+        // draw path
+
+        for (Field f : mStrategy.getPath()) {
+            gc.fillOval((f.getPosX()*fieldWidth)+(0+(fieldWidth*0.05f)), (f.getPosY()*fieldHeight)+(0+(fieldHeight*0.05f)), fieldWidth*0.9f,fieldHeight*0.9f);
+
+        }
     }
 }
