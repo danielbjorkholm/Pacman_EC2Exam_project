@@ -23,47 +23,36 @@ public class BreadthChase implements PathfindingStrategy{
     @Override
     public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
 
-        //Oprydning 1.0
-        numberOfSearches = 0;
         path.clear();
-        visitedNodes.clear();
-        recentlyAdded.clear();
-        rootElement = null;
-        maze.clearParents();
-
+        numberOfSearches = 0;
         if(currentPosition.equals(targetPosition)) return targetPosition;
 
-        if (rootElement == null) {
-            rootElement = currentPosition;
-            visitedNodes.add(rootElement);
-            recentlyAdded.add(rootElement);
-        }
+        //Oprydning 1.0
+
+        visitedNodes.clear();
+        recentlyAdded.clear();
+        maze.clearParents();
+
+        rootElement = currentPosition;
+        recentlyAdded.add(rootElement);
 
         // while (pacmans pos != i visted nodes fortsætter vi)
         while(!visitedNodes.contains(targetPosition)){
-            //For hvert seneste tilføjet Fields
-            for (Field f: recentlyAdded) {
-                //Tag dennes børn...
-                for (Field child: f.getConnectives()) {
-                    numberOfSearches++;
-                    //...Hvis Barnet ikke allerede har været undersøgt..
-                    if (child.getParent() == null) {
-                        //...set barnets parent...
-                        child.setParent(f);
-                        //...og smid dem i visited og recentlyAdded
-                        visitedNodes.add(child);
-                        fieldsToBoAdded.add(child);
-                    }
+            Field current = recentlyAdded.poll();
+            //For hver nabo til current...
+            for (Field f: current.getConnectives()) {
+                numberOfSearches++;
+                //...hvis den ikke allerede er fundet, besøgt eller hver spøgelsets tidligere position...
+                if(!visitedNodes.contains(f) && !recentlyAdded.contains(f)){
+                    //...så add til recentlyAdded..
+                    recentlyAdded.add(f);
+                    //... og sæt dens parent.
+                    f.setParent(current);
                 }
-                //Fjern parenten fra recently added.
-                fieldsToBeRemoved.add(f);
             }
-            //Oprydning 2.0
-            recentlyAdded.removeAll(fieldsToBeRemoved);
-            fieldsToBeRemoved.clear();
-            recentlyAdded.addAll(fieldsToBoAdded);
-            fieldsToBoAdded.clear();
-        }
+            //... og så er current blevet besøgt.
+            visitedNodes.add(current);
+            }
 
         Field nextField = calculatePath(targetPosition);
 
@@ -72,15 +61,12 @@ public class BreadthChase implements PathfindingStrategy{
     }
 
     private Field calculatePath(Field targetPosition) {
-
         Field currentField = targetPosition;
         path.push(targetPosition);
-
         while(!path.contains(rootElement)){
             path.push(currentField.getParent());
             currentField = currentField.getParent();
         }
-
         path.pop();
         return path.pop();
     }

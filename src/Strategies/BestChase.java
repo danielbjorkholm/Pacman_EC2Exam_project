@@ -23,27 +23,24 @@ public class BestChase implements PathfindingStrategy{
     @Override
     public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
 
+        path.clear();
+        numberOfSearches = 0;
         if(currentPosition.equals(targetPosition)) return targetPosition;
 
         //Oprydning 1.0
-        numberOfSearches = 0;
-        path.clear();
+
         visitedNodes.clear();
         //Når man adder til TreeSet bliver sorteret efter denne comparator
         recentlyAdded = new TreeSet<>(((o1, o2) ->  (int) (o1.getHeuristicCost(targetPosition)-o2.getHeuristicCost(targetPosition))));
-        rootElement = null;
         maze.clearParents();
 
-        if (rootElement == null) {
-            rootElement = currentPosition;
-            visitedNodes.add(rootElement);
-            recentlyAdded.add(rootElement);
-        }
+        rootElement = currentPosition;
+        visitedNodes.add(rootElement);
+        recentlyAdded.add(rootElement);
+
 
         //Så længe vi ikke har fundet target...
         while(!visitedNodes.contains(targetPosition)){
-
-
             Field current = recentlyAdded.pollFirst();
             //For hver nabo til current...
             for (Field f: current.getConnectives()) {
