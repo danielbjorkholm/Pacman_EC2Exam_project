@@ -4,7 +4,9 @@ import Interfaces.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Field implements Drawable{
@@ -15,6 +17,7 @@ public class Field implements Drawable{
 
     private Field mParent = null;
     private Set<Field> mConnectedFields = new HashSet<>();
+    private Map<Field, Double> mHeuristicCosts = new HashMap<>();
 
     public Field(int posX, int posY, FieldProperty property) {
         this.posX = posX;
@@ -99,7 +102,15 @@ public class Field implements Drawable{
         return result;
     }
 
-    public double getHeuristicCost(Field targetPosition) {
+    public double calcHeuristicCost(Field targetPosition) {
         return (Math.abs(posX - targetPosition.getPosX()) + Math.abs(posY - targetPosition.getPosY()));
+    }
+
+    public double getHeuristicCost(Field target){
+        return mHeuristicCosts.get(target);
+    }
+
+    public void setHeuristicCost(Field target) {
+        mHeuristicCosts.put(target, calcHeuristicCost(target));
     }
 }

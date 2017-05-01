@@ -42,9 +42,21 @@ public class Maze implements Drawable {
             }
         }
 
+        //Calc Heuristic Cost for alle felter til alle felter, som ikke er walls.
+        for (Field f: mFields) {
+            if(f.getFieldProperty() != FieldProperty.WALL) {
+                for (Field other : mFields) {
+                    if (!f.equals(other) && other.getFieldProperty() != FieldProperty.WALL) {
+                        f.setHeuristicCost(other);
+                    }
+                }
+            }
+        }
 
         System.out.println("Size: " + mFields.size());
         System.out.println(mFields.toString());
+
+        //System.out.println("Cost from 14,9 to 0,0:  " + getFieldAt(14,9).getHeuristicCost(getFieldAt(0,0)) );
     }
 
     public Set<Field> getFields() {

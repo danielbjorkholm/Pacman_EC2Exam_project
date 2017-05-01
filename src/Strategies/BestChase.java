@@ -31,7 +31,7 @@ public class BestChase implements PathfindingStrategy{
 
         visitedNodes.clear();
         //Når man adder til TreeSet bliver sorteret efter denne comparator
-        recentlyAdded = new TreeSet<>(((o1, o2) ->  (int) (o1.getHeuristicCost(targetPosition)-o2.getHeuristicCost(targetPosition))));
+        recentlyAdded = new TreeSet<>(((o1, o2) ->  (int) (o1.calcHeuristicCost(targetPosition)-o2.calcHeuristicCost(targetPosition))));
         maze.clearParents();
 
         rootElement = currentPosition;
