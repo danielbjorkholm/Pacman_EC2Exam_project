@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ public class Maze implements Drawable {
     private double mHeight;
     private double mWidth;
     private Set<Field> mFields;
+    private Set<Pill> mPills = new HashSet<>();
 
     public Maze(double height, double width) {
         mHeight = height;
@@ -42,7 +44,7 @@ public class Maze implements Drawable {
             }
         }
 
-        //Calc Heuristic Cost for alle felter til alle felter, som ikke er walls.
+        //Udregn Heuristic Cost for alle felter til alle felter, som ikke er walls.
         for (Field f: mFields) {
             if(f.getFieldProperty() != FieldProperty.WALL) {
                 for (Field other : mFields) {
@@ -56,7 +58,10 @@ public class Maze implements Drawable {
         System.out.println("Size: " + mFields.size());
         System.out.println(mFields.toString());
 
-        //System.out.println("Cost from 14,9 to 0,0:  " + getFieldAt(14,9).getHeuristicCost(getFieldAt(0,0)) );
+        mPills.add(new Pill(2,17));
+        mPills.add(new Pill(27,17));
+        mPills.add(new Pill(9,5));
+        mPills.add(new Pill(20,5));
     }
 
     public Set<Field> getFields() {
@@ -69,6 +74,9 @@ public class Maze implements Drawable {
         gc.fillRect(0, 0, fieldWidth, fieldHeight);
         for (Field f : mFields) {
             f.draw(gc, fieldHeight, fieldWidth);
+        }
+        for (Pill p: mPills) {
+         p.draw(gc, fieldHeight, fieldWidth);
         }
     }
 
@@ -105,5 +113,15 @@ public class Maze implements Drawable {
         for (Field f: mFields) {
             f.setParent(null);
         }
+    }
+
+    public boolean eatPill(int currX, int currY) {
+        for (Pill p: mPills) {
+            if(p.getPosX() == currX && p.getPosY() == currY){
+                mPills.remove(p);
+                return true;
+            }
+        }
+        return false;
     }
 }

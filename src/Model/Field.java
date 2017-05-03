@@ -15,6 +15,8 @@ public class Field implements Drawable{
     private int posY;
     private FieldProperty mFieldProperty;
 
+    private boolean hasPill = false;
+
     private Field mParent = null;
     private Set<Field> mConnectedFields = new HashSet<>();
     private Map<Field, Double> mHeuristicCosts = new HashMap<>();

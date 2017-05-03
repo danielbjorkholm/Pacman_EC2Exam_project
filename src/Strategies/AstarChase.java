@@ -42,7 +42,7 @@ public class AstarChase implements PathfindingStrategy{
         rootElement = currentPosition;
         visitedNodes.add(rootElement);
         recentlyAdded.add(rootElement);
-        System.out.println("RootElement: " + rootElement.toString());
+
 
 
         //Så længe vi ikke har fundet target...
@@ -69,7 +69,7 @@ public class AstarChase implements PathfindingStrategy{
         Field nextField = calculatePath(targetPosition);
 
 
-        System.out.println("Depth First - Number of Searches: " + numberOfSearches);
+        //System.out.println("Depth First - Number of Searches: " + numberOfSearches);
         prevField = rootElement;
         return nextField;
     }

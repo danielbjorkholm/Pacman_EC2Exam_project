@@ -16,6 +16,9 @@ public class Player implements Updatable, Drawable {
     private KeyCode mKeyCode;
     private int mStartAngle;
 
+    private boolean mFrenzy;
+    private int mFrenzyCounter;
+
     public Player(int currX, int currY, Maze maze) {
         this.currX = currX;
         this.currY = currY;
@@ -58,12 +61,27 @@ public class Player implements Updatable, Drawable {
             currX = prevX;
             currY = prevY;
         }
+
+        if (mFrenzy){
+            mFrenzyCounter++;
+        }
+        if(mFrenzyCounter >= 20){
+            mFrenzy = false;
+            mFrenzyCounter = 0;
+        }
+
+
     }
 
     @Override
     public void draw(GraphicsContext gc, double fieldHeight, double fieldWidth) {
 
-        gc.setFill(Color.YELLOW);
+        if(mFrenzy){
+            gc.setFill(Color.LIGHTCYAN);
+        } else {
+            gc.setFill(Color.YELLOW);
+        }
+
         gc.fillArc((currX*fieldWidth)+(0+(fieldWidth*0.05f)), (currY*fieldHeight)+(0+(fieldHeight*0.05f)), fieldWidth*0.9f,fieldHeight*0.9f, mStartAngle, 270 , ArcType.ROUND);
     }
 
@@ -85,5 +103,13 @@ public class Player implements Updatable, Drawable {
                     break;
             }
         }
+    }
+
+    public void setFrenzy(boolean frenzy) {
+        mFrenzy = frenzy;
+    }
+
+    public boolean isFrenzy() {
+        return mFrenzy;
     }
 }

@@ -12,6 +12,8 @@ import javafx.scene.shape.StrokeLineCap;
 public class Ghost implements Updatable, Drawable{
 
     private Field mPosition;
+    private Field mStartngPosition;
+
     private boolean mAlive;
     private Color mColor;
 
@@ -22,6 +24,7 @@ public class Ghost implements Updatable, Drawable{
 
     public Ghost(Field position, Color color, Maze maze, PathfindingStrategy strategy) {
        mPosition = position;
+        mStartngPosition = position;
         mColor = color;
         mAlive = true;
         mMaze = maze;
@@ -31,19 +34,31 @@ public class Ghost implements Updatable, Drawable{
         if (mColor == Color.BLUE) mDotMargin = 0.15;
         if (mColor == Color.ORANGE) mDotMargin = 0.30;
         if (mColor == Color.RED) mDotMargin = 0.45;
+    }
 
+    public Color getColor() {
+        return mColor;
+    }
 
+    public Field getPosition() {
+        return mPosition;
     }
 
     public void setTarget(Field targetPos){
         mTargetPos = targetPos;
     }
 
+    public void setStrategy(PathfindingStrategy strategy){
+        mStrategy = strategy;
+    }
+
+    public PathfindingStrategy getStrategy() {
+        return mStrategy;
+    }
+
     @Override
     public void update() {
         mPosition = mStrategy.findNextMove(mPosition, mTargetPos, mMaze);
-
-
     }
 
     @Override
@@ -66,13 +81,16 @@ public class Ghost implements Updatable, Drawable{
 
         // draw path
         if(mStrategy.getPath() != null) {
-
-
             for (Field f : mStrategy.getPath()) {
                 gc.setFill(mColor);
                 gc.fillOval((f.getPosX() * fieldWidth) + (0 + (fieldWidth * (0.05f + mDotMargin))), (f.getPosY() * fieldHeight) + (0 + (fieldHeight * (0.05f + mDotMargin))), fieldWidth * 0.4f, fieldHeight * 0.4f);
 
             }
         }
+    }
+
+    public void resetPosition() {
+        mPosition = mStartngPosition;
+
     }
 }

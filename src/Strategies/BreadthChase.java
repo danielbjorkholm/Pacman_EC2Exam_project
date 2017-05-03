@@ -56,7 +56,7 @@ public class BreadthChase implements PathfindingStrategy{
 
         Field nextField = calculatePath(targetPosition);
 
-        System.out.println("Breadth First - Number of Searches: " + numberOfSearches);
+        //System.out.println("Breadth First - Number of Searches: " + numberOfSearches);
         return nextField;
     }
 

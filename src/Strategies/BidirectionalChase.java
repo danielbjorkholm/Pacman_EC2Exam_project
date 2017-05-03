@@ -93,7 +93,7 @@ public class BidirectionalChase implements PathfindingStrategy{
             visitedFromTarget.add(currentFromTarget);
         }
 
-        System.out.println("Bidirectional First - Number of Searches: " + numberOfSearches);
+        //System.out.println("Bidirectional First - Number of Searches: " + numberOfSearches);
         return calculatePath(currentPosition, targetPosition, startJointNode, targetJointNode);
     }
 
@@ -120,8 +120,6 @@ public class BidirectionalChase implements PathfindingStrategy{
             currentField = currentField.getParent();
         }
         path.pop();
-
-        System.out.println("Path is: " + path.toString());
         return path.pop();
     }
 

@@ -29,6 +29,12 @@ public class Game implements Updatable, Drawable{
     public void update() {
 
         mPlayer.update();
+        mPlayer.setFrenzy(mMaze.eatPill(mPlayer.getCurrX(), mPlayer.getCurrY()));
+        if(mPlayer.isFrenzy()){
+            mGhostManager.setScared(true);
+        } else {
+            mGhostManager.setScared(false);
+        }
         mGhostManager.setTargetLocation(mMaze.getFieldAt(mPlayer.getCurrX(), mPlayer.getCurrY()));
         mGhostManager.update();
     }

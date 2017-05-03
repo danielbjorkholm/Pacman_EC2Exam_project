@@ -60,7 +60,7 @@ public class BestChase implements PathfindingStrategy{
         Field nextField = calculatePath(targetPosition);
 
 
-        System.out.println("Depth First - Number of Searches: " + numberOfSearches);
+        //System.out.println("Depth First - Number of Searches: " + numberOfSearches);
         prevField = rootElement;
         return nextField;
     }
@@ -83,21 +83,4 @@ public class BestChase implements PathfindingStrategy{
         path.pop();
         return path.pop();
     }
-
-
-    //The Cheat Version
-    /*public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
-        int distanceFromTargetX = Math.abs(currentPosition.getPosX() - targetPosition.getPosX());
-        int distanceFromTargetY = Math.abs(currentPosition.getPosY() - targetPosition.getPosY());
-
-        for (Field f: currentPosition.getConnectives()) {
-            if (Math.abs(f.getPosX() - targetPosition.getPosX()) < distanceFromTargetX ){
-                return f;
-            }
-            if (Math.abs(f.getPosY() - targetPosition.getPosY()) < distanceFromTargetY){
-                return f;
-            }
-        }
-        return (Field) currentPosition.getConnectives().toArray()[0];
-    }*/
 }
