@@ -18,6 +18,7 @@ public class Ghost implements Updatable, Drawable{
     private Field mTargetPos;
     private Maze mMaze;
     private PathfindingStrategy mStrategy;
+    private double mDotMargin = 0.0;
 
     public Ghost(Field position, Color color, Maze maze, PathfindingStrategy strategy) {
        mPosition = position;
@@ -25,6 +26,13 @@ public class Ghost implements Updatable, Drawable{
         mAlive = true;
         mMaze = maze;
         mStrategy = strategy;
+
+        if (mColor == Color.PINK) mDotMargin = 0.00;
+        if (mColor == Color.BLUE) mDotMargin = 0.15;
+        if (mColor == Color.ORANGE) mDotMargin = 0.30;
+        if (mColor == Color.RED) mDotMargin = 0.45;
+
+
     }
 
     public void setTarget(Field targetPos){
@@ -57,10 +65,14 @@ public class Ghost implements Updatable, Drawable{
                       (mPosition.getPosX()*fieldWidth)+((fieldWidth/2)+(fieldWidth*0.125f)),(mPosition.getPosY()*fieldHeight)+(fieldHeight*0.430f));
 
         // draw path
+        if(mStrategy.getPath() != null) {
 
-        for (Field f : mStrategy.getPath()) {
-            gc.fillOval((f.getPosX()*fieldWidth)+(0+(fieldWidth*0.05f)), (f.getPosY()*fieldHeight)+(0+(fieldHeight*0.05f)), fieldWidth*0.9f,fieldHeight*0.9f);
 
+            for (Field f : mStrategy.getPath()) {
+                gc.setFill(mColor);
+                gc.fillOval((f.getPosX() * fieldWidth) + (0 + (fieldWidth * (0.05f + mDotMargin))), (f.getPosY() * fieldHeight) + (0 + (fieldHeight * (0.05f + mDotMargin))), fieldWidth * 0.4f, fieldHeight * 0.4f);
+
+            }
         }
     }
 }

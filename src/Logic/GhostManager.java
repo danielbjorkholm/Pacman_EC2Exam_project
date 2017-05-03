@@ -19,9 +19,9 @@ public class GhostManager implements Updatable, Drawable {
 
     public GhostManager(Maze maze) {
         mGhosts.add(new Ghost(maze.getFieldAt(14,9), Color.PINK, maze, new AstarChase()));
-        //mGhosts.add(new Ghost(maze.getFieldAt(14,10), Color.BLUE, maze, new RandomWalk()));
-        //mGhosts.add(new Ghost(maze.getFieldAt(15,9), Color.ORANGE,maze, new RandomWalk()));
-        //mGhosts.add(new Ghost(maze.getFieldAt(15,10), Color.RED, maze, new RandomWalk()));
+        mGhosts.add(new Ghost(maze.getFieldAt(14,10), Color.BLUE, maze, new BestChase()));
+        mGhosts.add(new Ghost(maze.getFieldAt(15,9), Color.ORANGE,maze, new BreadthChase()));
+        mGhosts.add(new Ghost(maze.getFieldAt(15,10), Color.RED, maze, new BidirectionalChase()));
 
     }
 
