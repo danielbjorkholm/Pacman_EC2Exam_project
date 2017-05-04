@@ -28,4 +28,11 @@ public class Fleeing implements PathfindingStrategy {
 
         return null;
     }
+
+    @Override
+    public int getSearchCount() {
+        return 0;
+    }
+
+
 }

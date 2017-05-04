@@ -14,7 +14,7 @@ public class Ghost implements Updatable, Drawable{
     private Field mPosition;
     private Field mStartngPosition;
 
-    private boolean mAlive;
+    private boolean mRevealPath;
     private Color mColor;
 
     private Field mTargetPos;
@@ -26,7 +26,7 @@ public class Ghost implements Updatable, Drawable{
        mPosition = position;
         mStartngPosition = position;
         mColor = color;
-        mAlive = true;
+        mRevealPath = false;
         mMaze = maze;
         mStrategy = strategy;
 
@@ -44,12 +44,20 @@ public class Ghost implements Updatable, Drawable{
         return mPosition;
     }
 
+    public int getSearchCount(){
+        return mStrategy.getSearchCount();
+    }
+
     public void setTarget(Field targetPos){
         mTargetPos = targetPos;
     }
 
     public void setStrategy(PathfindingStrategy strategy){
         mStrategy = strategy;
+    }
+
+    public void setRevealPath(boolean revealPath) {
+        mRevealPath = revealPath;
     }
 
     public PathfindingStrategy getStrategy() {
@@ -80,11 +88,13 @@ public class Ghost implements Updatable, Drawable{
                       (mPosition.getPosX()*fieldWidth)+((fieldWidth/2)+(fieldWidth*0.125f)),(mPosition.getPosY()*fieldHeight)+(fieldHeight*0.430f));
 
         // draw path
-        if(mStrategy.getPath() != null) {
-            for (Field f : mStrategy.getPath()) {
-                gc.setFill(mColor);
-                gc.fillOval((f.getPosX() * fieldWidth) + (0 + (fieldWidth * (0.05f + mDotMargin))), (f.getPosY() * fieldHeight) + (0 + (fieldHeight * (0.05f + mDotMargin))), fieldWidth * 0.4f, fieldHeight * 0.4f);
+        if(mRevealPath){
+            if(mStrategy.getPath() != null) {
+                for (Field f : mStrategy.getPath()) {
+                    gc.setFill(mColor);
+                    gc.fillOval((f.getPosX() * fieldWidth) + (0 + (fieldWidth * (0.05f + mDotMargin))), (f.getPosY() * fieldHeight) + (0 + (fieldHeight * (0.05f + mDotMargin))), fieldWidth * 0.4f, fieldHeight * 0.4f);
 
+                }
             }
         }
     }

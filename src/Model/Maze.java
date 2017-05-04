@@ -55,6 +55,10 @@ public class Maze implements Drawable {
             }
         }
 
+        for (Field f: mFields) {
+
+        }
+
         System.out.println("Size: " + mFields.size());
         System.out.println(mFields.toString());
 

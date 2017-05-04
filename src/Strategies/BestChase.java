@@ -72,6 +72,11 @@ public class BestChase implements PathfindingStrategy{
         return path;
     }
 
+    @Override
+    public int getSearchCount() {
+        return numberOfSearches;
+    }
+
     private Field calculatePath(Field targetPosition) {
         Field currentField = targetPosition;
         path.push(targetPosition);

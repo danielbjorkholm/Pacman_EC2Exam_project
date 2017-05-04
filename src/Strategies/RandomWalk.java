@@ -34,4 +34,11 @@ public class RandomWalk implements PathfindingStrategy{
 
         return null;
     }
+
+    @Override
+    public int getSearchCount() {
+        return 0;
+    }
+
+
 }

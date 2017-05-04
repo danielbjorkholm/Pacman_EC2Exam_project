@@ -13,4 +13,6 @@ public interface PathfindingStrategy {
 
     public Stack<Field> getPath();
 
+    public int getSearchCount();
+
 }

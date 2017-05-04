@@ -102,7 +102,6 @@ public class BidirectionalChase implements PathfindingStrategy{
         //Last part of Path
         Stack<Field> reversedPath = new Stack<>();
         Field currentField = targetJointNode;
-        //reversedPath.push(targetJointNode);
         while(currentField != null){
             reversedPath.push(currentField);
             currentField = currentField.getParent();
@@ -127,5 +126,10 @@ public class BidirectionalChase implements PathfindingStrategy{
     @Override
     public Stack<Field> getPath() {
         return path;
+    }
+
+    @Override
+    public int getSearchCount() {
+        return numberOfSearches;
     }
 }

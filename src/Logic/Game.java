@@ -6,6 +6,9 @@ import Model.Maze;
 import Model.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+
+import java.util.Map;
 
 public class Game implements Updatable, Drawable{
     private static Game ourInstance = new Game();
@@ -62,5 +65,13 @@ public class Game implements Updatable, Drawable{
 
     public void updatePlayerDirection(KeyCode code) {
         mPlayer.updateDirection(code);
+    }
+
+    public void setPathVisible(boolean visible) {
+        mGhostManager.setPathVisible(visible);
+    }
+
+    public Map<Color, Integer> getSearchCounts() {
+        return mGhostManager.getSearchCounts();
     }
 }

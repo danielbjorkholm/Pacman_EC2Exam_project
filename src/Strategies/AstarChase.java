@@ -93,4 +93,9 @@ public class AstarChase implements PathfindingStrategy{
     public Stack<Field> getPath() {
         return path;
     }
+
+    @Override
+    public int getSearchCount() {
+        return numberOfSearches;
+    }
 }

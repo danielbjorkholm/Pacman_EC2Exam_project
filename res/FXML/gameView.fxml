@@ -23,7 +23,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <CheckBox mnemonicParsing="false" onAction="#handlePathVisibleCheckBox" prefWidth="120.0" text="Path visible">
+            <CheckBox fx:id="mPathCheckBox" mnemonicParsing="false" onAction="#handlePathVisibleCheckBox" prefWidth="120.0" text="Path visible">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

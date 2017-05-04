@@ -10,7 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GhostManager implements Updatable, Drawable {
 
@@ -64,13 +66,7 @@ public class GhostManager implements Updatable, Drawable {
                 gh.update();
             }
         }
-
-
-
-
     }
-
-
 
     private void setGhostToChase() {
         for (Ghost gh: mGhosts) {
@@ -98,6 +94,19 @@ public class GhostManager implements Updatable, Drawable {
         for (Ghost gh: mGhosts) {
             gh.setTarget(targetLocation);
         }
+    }
 
+    public void setPathVisible(boolean visible) {
+        for (Ghost gh: mGhosts) {
+            gh.setRevealPath(visible);
+        }
+    }
+
+    public Map<Color, Integer> getSearchCounts(){
+        Map<Color, Integer> result = new HashMap<>(4);
+        for (Ghost gh: mGhosts) {
+            result.put(gh.getColor(),gh.getSearchCount());
+        }
+        return result;
     }
 }

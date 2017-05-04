@@ -77,4 +77,9 @@ public class BreadthChase implements PathfindingStrategy{
 
         return path;
     }
+
+    @Override
+    public int getSearchCount() {
+        return numberOfSearches;
+    }
 }
