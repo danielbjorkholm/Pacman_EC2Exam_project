@@ -69,15 +69,13 @@ public class Player implements Updatable, Drawable {
             mFrenzy = false;
             mFrenzyCounter = 0;
         }
-
-
     }
 
     @Override
     public void draw(GraphicsContext gc, double fieldHeight, double fieldWidth) {
 
         if(mFrenzy){
-            gc.setFill(Color.LIGHTCYAN);
+            gc.setFill(Color.DARKRED);
         } else {
             gc.setFill(Color.YELLOW);
         }
@@ -106,7 +104,7 @@ public class Player implements Updatable, Drawable {
     }
 
     public void setFrenzy(boolean frenzy) {
-        mFrenzy = frenzy;
+        if(frenzy) mFrenzy = true;
     }
 
     public boolean isFrenzy() {

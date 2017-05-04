@@ -49,9 +49,9 @@ public class GhostManager implements Updatable, Drawable {
         }
         if(mMoveCounter >= 21) mMoveCounter = 0;
 
-        //Update ghosts
+        //Update ghosts, hvis de ikke er bange, ellers updatér kun hver anden gang (fordi de er bange)
+        if(!mScared || mMoveCounter % 2 == 0)
         for (Ghost gh: mGhosts) {
-            gh.update();
             if(gh.getPosition().equals(mPlayerPos)){
                 if (mScared){
                     gh.setStrategy(new Fleeing());
@@ -60,6 +60,8 @@ public class GhostManager implements Updatable, Drawable {
                     targetReached = true;
                     //TODO: Player dead
                 }
+            } else {
+                gh.update();
             }
         }
 

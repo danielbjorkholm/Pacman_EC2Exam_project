@@ -26,6 +26,7 @@ public class BestChase implements PathfindingStrategy{
         path.clear();
         numberOfSearches = 0;
         if(currentPosition.equals(targetPosition)) return targetPosition;
+        if(currentPosition.getConnectives().contains(targetPosition)) return targetPosition;
 
         //Oprydning 1.0
 
