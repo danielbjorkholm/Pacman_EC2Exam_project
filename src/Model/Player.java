@@ -62,6 +62,7 @@ public class Player implements Updatable, Drawable {
             currY = prevY;
         }
 
+        //Frenzy timer
         if (mFrenzy){
             mFrenzyCounter++;
         }
@@ -79,7 +80,6 @@ public class Player implements Updatable, Drawable {
         } else {
             gc.setFill(Color.YELLOW);
         }
-
         gc.fillArc((currX*fieldWidth)+(0+(fieldWidth*0.05f)), (currY*fieldHeight)+(0+(fieldHeight*0.05f)), fieldWidth*0.9f,fieldHeight*0.9f, mStartAngle, 270 , ArcType.ROUND);
     }
 

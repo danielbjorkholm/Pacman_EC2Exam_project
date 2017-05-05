@@ -14,12 +14,8 @@ public class BreadthChase implements PathfindingStrategy{
     private Queue<Field> recentlyAdded = new LinkedList<>();
     private Stack<Field> path = new Stack<>();
 
-    private List<Field> fieldsToBeRemoved = new ArrayList<>();
-    private List<Field> fieldsToBoAdded = new ArrayList<>();
-
     private int numberOfSearches = 0;
 
-    // bliver kaldt af spøgelset
     @Override
     public Field findNextMove(Field currentPosition, Field targetPosition, Maze maze) {
 
@@ -28,8 +24,7 @@ public class BreadthChase implements PathfindingStrategy{
         if(currentPosition.equals(targetPosition)) return targetPosition;
         if(currentPosition.getConnectives().contains(targetPosition)) return targetPosition;
 
-        //Oprydning 1.0
-
+        //Oprydning
         visitedNodes.clear();
         recentlyAdded.clear();
         maze.clearParents();
@@ -74,7 +69,6 @@ public class BreadthChase implements PathfindingStrategy{
 
     @Override
     public Stack<Field> getPath() {
-
         return path;
     }
 

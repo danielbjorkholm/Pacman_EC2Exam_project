@@ -15,11 +15,9 @@ public class Field implements Drawable{
     private int posY;
     private FieldProperty mFieldProperty;
 
-    private boolean hasPill = false;
-
     private Field mParent = null;
     private Set<Field> mConnectedFields = new HashSet<>();
-    private Map<Field, Double> mHeuristicCosts = new HashMap<>();
+    //private Map<Field, Double> mHeuristicCosts = new HashMap<>();
 
     public Field(int posX, int posY, FieldProperty property) {
         this.posX = posX;
@@ -59,7 +57,6 @@ public class Field implements Drawable{
         return true;
     }
 
-
     @Override
     public void draw(GraphicsContext gc, double fieldHeight, double fieldWidth) {
         if (mFieldProperty == FieldProperty.WALL) {
@@ -82,8 +79,6 @@ public class Field implements Drawable{
         return true;
     }
 
-
-
     @Override
     public String toString() {
 
@@ -93,14 +88,11 @@ public class Field implements Drawable{
                 "posX=" + posX +
                 ", posY=" + posY +
                 ", mFieldProperty=" + mFieldProperty +
-        ", connected: ";
+                ", connected: ";
         for (Field f: mConnectedFields) {
             result += "-x:" + f.getPosX() + "y:" + f.getPosY() + "-";
         }
-
-
-                //", mConnectedFields=" + mConnectedFields +
-                result += '}';
+        result += '}';
         return result;
     }
 
@@ -108,11 +100,10 @@ public class Field implements Drawable{
         return (Math.abs(posX - targetPosition.getPosX()) + Math.abs(posY - targetPosition.getPosY()));
     }
 
-    public double getHeuristicCost(Field target){
+/*    public double getHeuristicCost(Field target){
         return mHeuristicCosts.get(target);
     }
-
     public void setHeuristicCost(Field target) {
         mHeuristicCosts.put(target, calcHeuristicCost(target));
-    }
+    }*/
 }

@@ -10,7 +10,6 @@ import java.util.TreeSet;
 
 public class Fleeing implements PathfindingStrategy {
 
-    private Field prevField = null;
     private TreeSet<Field> sortedConnectives;
 
     @Override
@@ -25,7 +24,6 @@ public class Fleeing implements PathfindingStrategy {
 
     @Override
     public Stack<Field> getPath() {
-
         return null;
     }
 

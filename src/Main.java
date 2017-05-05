@@ -18,7 +18,7 @@ public class Main extends Application {
 
         Navigator.getInstance().setStage(primaryStage);
         Navigator.getInstance().switchToGame();
-        primaryStage.setTitle("Maze Runner");
+        primaryStage.setTitle("DanielBjørkholmEc2Exam");
         primaryStage.show();
     }
 

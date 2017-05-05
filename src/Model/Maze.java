@@ -30,6 +30,7 @@ public class Maze implements Drawable {
             connectedFields.clear();
             //...og hvert other felt...
             for (Field other : mFields) {
+                //...hvis det er ved siden af f (manhatten distance)...
                 if (other.getPosX() == (f.getPosX() - 1) && other.getPosY() == f.getPosY())
                     connectedFields.add(other);
                 if (other.getPosX() == (f.getPosX() + 1) && other.getPosY() == f.getPosY())
@@ -38,14 +39,14 @@ public class Maze implements Drawable {
                     connectedFields.add(other);
                 if (other.getPosX() == f.getPosX() && other.getPosY() == (f.getPosY() + 1))
                     connectedFields.add(other);
-            }
-            for (Field c: connectedFields) {
+            }                     //...add til connectedFields...
+            for (Field c: connectedFields) { //...medmindre det er en wall.
                 if(c. getFieldProperty() == FieldProperty.PATH) f.addConnectedField(c);
             }
         }
 
         //Udregn Heuristic Cost for alle felter til alle felter, som ikke er walls.
-        for (Field f: mFields) {
+/*        for (Field f: mFields) {
             if(f.getFieldProperty() != FieldProperty.WALL) {
                 for (Field other : mFields) {
                     if (!f.equals(other) && other.getFieldProperty() != FieldProperty.WALL) {
@@ -53,11 +54,7 @@ public class Maze implements Drawable {
                     }
                 }
             }
-        }
-
-        for (Field f: mFields) {
-
-        }
+        }*/
 
         System.out.println("Size: " + mFields.size());
         System.out.println(mFields.toString());
@@ -84,7 +81,6 @@ public class Maze implements Drawable {
         }
     }
 
-
     public double getHeight() {
         return mHeight;
     }
@@ -102,7 +98,6 @@ public class Maze implements Drawable {
         }
         return null;
     }
-
 
     public FieldProperty getFieldProperty(int X, int Y) {
         for (Field f : mFields) {

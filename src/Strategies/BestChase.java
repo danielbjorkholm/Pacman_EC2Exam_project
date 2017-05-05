@@ -28,17 +28,15 @@ public class BestChase implements PathfindingStrategy{
         if(currentPosition.equals(targetPosition)) return targetPosition;
         if(currentPosition.getConnectives().contains(targetPosition)) return targetPosition;
 
-        //Oprydning 1.0
-
+        //Oprydning
         visitedNodes.clear();
-        //Når man adder til TreeSet bliver sorteret efter denne comparator
+        //Når man adder til TreeSet, bliver felterne sorteret efter denne comparator
         recentlyAdded = new TreeSet<>(((o1, o2) ->  (int) (o1.calcHeuristicCost(targetPosition)-o2.calcHeuristicCost(targetPosition))));
         maze.clearParents();
 
         rootElement = currentPosition;
         visitedNodes.add(rootElement);
         recentlyAdded.add(rootElement);
-
 
         //Så længe vi ikke har fundet target...
         while(!visitedNodes.contains(targetPosition)){
@@ -59,7 +57,6 @@ public class BestChase implements PathfindingStrategy{
         }
 
         Field nextField = calculatePath(targetPosition);
-
 
         //System.out.println("Depth First - Number of Searches: " + numberOfSearches);
         prevField = rootElement;

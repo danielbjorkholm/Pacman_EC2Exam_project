@@ -31,7 +31,6 @@ public class RandomWalk implements PathfindingStrategy{
 
     @Override
     public Stack<Field> getPath() {
-
         return null;
     }
 

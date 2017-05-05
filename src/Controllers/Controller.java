@@ -25,7 +25,7 @@ public class Controller implements Initializable{
     public CheckBox mPathCheckBox;
 
     private Game mGame = Game.getInstance();
-    private float mRefreshRate = 0.25f; //in seconds
+    private float mRefreshRate = 0.50f; //in seconds
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
